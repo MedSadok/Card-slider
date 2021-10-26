@@ -2,6 +2,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
+
+
+
 export default defineConfig({
     resolve: {
         alias: {
@@ -13,5 +16,12 @@ export default defineConfig({
         fs: {
             allow: ['..']
         }
-    }
+    },
+    // css: {
+    //     preprocessorOptions: {
+    //         scss: {
+    //             additionalData: `@import "~@/assets/scss/style";`
+    //         },
+    //     },
+    // },
 })

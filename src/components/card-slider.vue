@@ -4,7 +4,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import Card from './card.vue';
 import Modal from './modal.vue';
-
+import { ref } from 'vue';
 export default {
   name: 'sliderCard',
   components: {
@@ -15,9 +15,19 @@ export default {
     Card,
     Modal,
   },
+  setup(){
+  },
   data() {
     return {
-      slideData: [{title: 'title 1', content: 'content 1'}, {title: 'title 2', content: 'content 2'}, {title: 'title 3', content: 'content 3'}, {title: 'title 4', content: 'content 4'}],
+      slideData: [{title: 'Trip To Berlin', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
+                  {title: 'Trip To Istanbul', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
+                  {title: 'Trip To Tunisia', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
+                  {title: 'Trip To Casablanca', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
+                  {title: 'Trip To Paris', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
+                  {title: 'Trip To Manchester', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
+                  {title: 'Trip To Chicago', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
+                  {title: 'Trip To Los Angelos', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '}
+                  ],
       modalContent: null,
       showModal: false,
     }
@@ -28,7 +38,6 @@ export default {
       this.showModal= true;
     },
     closeModal() {
-      console.log('closed')
       this.modalContent = {};
       this.showModal= false;
     }
@@ -37,18 +46,20 @@ export default {
 </script>
 
 <template>
-  <carousel :items-to-show="3">
-    <slide v-for="slide in slideData" :key="slide">
-      <Card :slide-data="slide" @clicked="openModal(slide)" />
-    </slide>
+  <div class="container">
+    <carousel :items-to-show="3" class="py-5">
+        <slide v-for="slide in slideData" :key="slide">
+            <Card :slide-data="slide" @clicked="openModal(slide)" />
+        </slide>
 
-    <template #addons>
-      <navigation />
-      <pagination />
-    </template>
-  </carousel>
-  
-  <Modal v-if="showModal" :modal-content="modalContent" @close="closeModal" />
+        <template #addons>
+        <navigation />
+        <pagination />
+        </template>
+    </carousel>
+
+    <Modal v-if="showModal" :modal-content="modalContent" @close="closeModal" />
+  </div>
 </template>
 
 

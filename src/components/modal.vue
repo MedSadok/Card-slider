@@ -1,4 +1,5 @@
 <script>
+import { ref, } from 'vue';
 export default {
     name: 'Modal',
     props: {
@@ -6,20 +7,50 @@ export default {
             type: Object,
             default: () => ({}),
         },
-        methods: {
-            handleClick() {
-                console.log('close')
-                this.$emit('close');
-            }
+    },
+    setup(props){
+        return props;
+    },
+    methods: {
+        handleClick() {
+            this.$emit('close');
         }
     }
 }
 </script>
 
 <template>
-    <h1>{{ modalContent.title }}</h1>
-    <div class="card-body">
-        <p>{{ modalContent.content }}</p>
+    <div id="overlay">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-end">
+                    <button class="bg-transparent border-0" @click="handleClick">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <h1>{{ modalContent.title }}</h1>
+                    <div class="card-body">
+                        <p>{{ modalContent.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button @click="handleClick">Close</button>
 </template>
+
+<style lang="scss">
+   #overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        .modal-dialog{
+            .card-body{
+                padding-left: 0;
+            }
+        }
+    }
+</style>
